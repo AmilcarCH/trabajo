@@ -3,12 +3,15 @@ package com.example.alumnos.carrito;
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
+import android.util.Log;
 
 import com.example.alumnos.carrito.bean.Product;
 import com.example.alumnos.carrito.dao.ProductDAO;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -23,14 +26,18 @@ public class ExampleInstrumentedTest {
     public void useAppContext() throws Exception {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
+        assertEquals("com.example.alumnos.carrito", appContext.getPackageName());
 
         ProductDAO dao = new ProductDAO(appContext);
-        Product person = dao.findPersonById("1");
+        Product product = new Product();
+        product.setDesProduct("Omar");
+        product.setCantidad(1);
+        dao.saveProduct(product);
 
-        assertEquals("Omar", person.getDesProduct());
+        List<Product> list = dao.findProductAll();
 
+        Log.i("list:::",list.size()+"");
 
-
-        assertEquals("com.example.alumnos.carrito", appContext.getPackageName());
+        dao.close();
     }
 }

@@ -27,14 +27,13 @@ public class ProductDAO extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String ddl = "CREATE TABLE Person (" +
+        String ddl = "CREATE TABLE Product (" +
                 " codProduct INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
                 " desProduct TEXT," +
-                " cantidad REAL," +
+                " cantidad INTEGER," +
                 " precio REAL," +
                 " total REAL," +
                 ");";
-
         db.execSQL(ddl);
 
 
@@ -55,26 +54,8 @@ public class ProductDAO extends SQLiteOpenHelper{
         values.put("cantidad", product.getCantidad());
         values.put("precio", product.getPrecio());
         values.put("total", product.getTotal());
-
         getWritableDatabase().insert("Product",null,values);
 
-    }
-    public Product findPersonById(String id) {
-        String column[] = {"id", "name", "lastNameF", "lastNameM", "site", "address", "sex", "status", "statusMarried", "score", "photo"};
-        String where = "id = " + id;
-
-        Product product = null;
-        Cursor cursor = getReadableDatabase().query("Person", column, where, null, null, null, null);
-        if (cursor.moveToFirst()) {
-            product = new Product();
-            product.setCodPrduct(cursor.getLong(0));
-            product.setDesProduct(cursor.getString(1));
-            product.setCantidad(cursor.getInt(2));
-            product.setPrecio(cursor.getDouble(3));
-            product.setTotal(cursor.getDouble(4));
-        }
-        cursor.close();
-        return product;
     }
 
 
@@ -95,7 +76,7 @@ public class ProductDAO extends SQLiteOpenHelper{
             product.setTotal(cursor.getDouble(4));
             listProduct.add(product);
         }
-        return null;
+        return listProduct;
     }
 
 }
