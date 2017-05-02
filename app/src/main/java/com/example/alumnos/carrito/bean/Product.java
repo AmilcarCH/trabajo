@@ -12,7 +12,6 @@ public class Product {
     private Double precio;
     private Double total;
 
-
     public Product(Long codProduct, String desProduct, Integer cantidad, Double precio, Double total) {
         this.codProduct = codProduct;
         this.desProduct = desProduct;
@@ -25,12 +24,12 @@ public class Product {
 
     }
 
-    public Long getCodPrduct() {
+    public Long getCodProduct() {
         return codProduct;
     }
 
-    public void setCodPrduct(Long codPrduct) {
-        this.codProduct = codPrduct;
+    public void setCodProduct(Long codProduct) {
+        this.codProduct = codProduct;
     }
 
     public String getDesProduct() {

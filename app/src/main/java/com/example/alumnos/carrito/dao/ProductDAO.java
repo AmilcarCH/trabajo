@@ -49,7 +49,7 @@ public class ProductDAO extends SQLiteOpenHelper{
     public void saveProduct(Product product){
 
         ContentValues values =new ContentValues();
-        values.put("codProduct", product.getCodPrduct());
+        values.put("codProduct", product.getCodProduct());
         values.put("desProduct", product.getDesProduct());
         values.put("cantidad", product.getCantidad());
         values.put("precio", product.getPrecio());
@@ -69,7 +69,7 @@ public class ProductDAO extends SQLiteOpenHelper{
         Product product = null;
         while (cursor.moveToNext()){
             product =new Product();
-            product.setCodPrduct(cursor.getLong(0));
+            product.setCodProduct(cursor.getLong(0));
             product.setDesProduct(cursor.getString(1));
             product.setCantidad(cursor.getInt(2));
             product.setPrecio(cursor.getDouble(3));
