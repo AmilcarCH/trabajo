@@ -32,7 +32,7 @@ public class ProductDAO extends SQLiteOpenHelper{
                 " desProduct TEXT," +
                 " cantidad INTEGER," +
                 " precio REAL," +
-                " total REAL," +
+                " total REAL" +
                 ");";
         db.execSQL(ddl);
     }
@@ -62,7 +62,7 @@ public class ProductDAO extends SQLiteOpenHelper{
         List<Product> listProduct=new ArrayList<Product>();
         String columns[]={"codProduct","desProduct","cantidad","precio","total"};
         String where = null;
-        Cursor cursor = getReadableDatabase().query("",columns,where,null,null,null,null);
+        Cursor cursor = getReadableDatabase().query("Product",columns,where,null,null,null,null);
 
         Product product = null;
         while (cursor.moveToNext()){

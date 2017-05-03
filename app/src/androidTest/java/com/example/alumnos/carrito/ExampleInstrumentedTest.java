@@ -30,8 +30,9 @@ public class ExampleInstrumentedTest {
 
         ProductDAO dao = new ProductDAO(appContext);
         Product product = new Product();
-        product.setDesProduct("Omar");
+        product.setDesProduct("reloj");
         product.setCantidad(1);
+        product.setPrecio(20.5);
         dao.saveProduct(product);
 
         List<Product> list = dao.findProductAll();
