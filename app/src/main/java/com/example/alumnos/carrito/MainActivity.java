@@ -1,5 +1,6 @@
 package com.example.alumnos.carrito;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,8 +9,20 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import com.example.alumnos.carrito.bean.Product;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static List<Product> listProduct = new ArrayList<Product>();
+    public Long productId=0L;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,14 +31,35 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        ListView listView = (ListView) findViewById(R.id.listView);
+
+        int layout = android.R.layout.simple_list_item_1;
+        ArrayAdapter<Product> arrayAdapter = new ArrayAdapter<Product>(this, layout,listProduct);
+
+        listView.setAdapter(arrayAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Product product = (Product) parent.getItemAtPosition(position);
+                productId=product.getCodProduct();
+                Toast.makeText(MainActivity.this, product.getCodProduct()+" producto: "+product.getDesProduct(),
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                goRegister();
             }
         });
+    }
+    public void goRegister(){
+        Intent i = new Intent(this,Register.class);
+        i.putExtra("personId",0);
+        startActivity(i);
     }
 
     @Override

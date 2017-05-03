@@ -27,7 +27,7 @@ public class ProductDAO extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String ddl = "CREATE TABLE Product (" +
+        String ddl = "CREATE TABLE Product(" +
                 " codProduct INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
                 " desProduct TEXT," +
                 " cantidad INTEGER," +
@@ -35,8 +35,6 @@ public class ProductDAO extends SQLiteOpenHelper{
                 " total REAL," +
                 ");";
         db.execSQL(ddl);
-
-
     }
 
     @Override
